@@ -30,9 +30,15 @@ game_on = True
 correct_answers = []
 
 # while loop to keep accepting answers
-while game_on:
+while len(correct_answers) < 50:
     answer = screen.textinput(f"{num_correct}/50 States Correct", "What's another state name?").title()
 
+    # some condition for exiting the game early
+    if answer == 'Exit':
+        # TODO: create list of missing states
+        break
+
+    # check answer
     if answer in correct_answers:
         print(f"Already guessed {answer}. Make another guess.")
     elif answer in states_df.state.values:
@@ -49,9 +55,7 @@ while game_on:
         # something for when they get it wrong
         print('Incorrect. Enter new guess.')
 
-    # some condition for exiting the game early
-    if num_correct == 50:
-        print("You got them all correct!")
-        game_on = False
+
+print(f"You got {len(correct_answers)}/50 correct!")
 
 screen.exitonclick()

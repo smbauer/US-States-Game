@@ -35,7 +35,9 @@ while len(correct_answers) < 50:
 
     # some condition for exiting the game early
     if answer == 'Exit':
-        # TODO: create list of missing states
+        # create list of missing states
+        missing_states = [state for state in states_df.state.to_list() if state not in correct_answers]
+        pd.DataFrame(data=missing_states, columns=['missing_states']).to_csv("missing_states.csv", index=False)
         break
 
     # check answer
